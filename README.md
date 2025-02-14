@@ -424,7 +424,6 @@ Event::listen(CredentialCloned::class, function ($cloned) {
     $cloned->credential->user->notify($notification);
 });
 ```
-
 ---
 
 Here’s the updated section with the additional line for detailed documentation:
@@ -441,14 +440,12 @@ The `WebAuthnAuthenticatable` contract allows you to manage credentials within t
 You can use these methods to, for example, find a credential to blacklist or disable WebAuthn completely by flushing all registered devices.
 
 ---
-
 ## Conclusion
 
 This setup integrates WebAuthn into your Laravel application using the `laragear/webauthn` package. It enables Passkey-based authentication for enhanced security without relying on passwords. You can now authenticate users with WebAuthn and also manage their credentials within the Laravel framework.
 
 For detailed documentation, you can follow this link: [Laragear/WebAuthn Documentation](https://github.com/Laragear/WebAuthn).  
 *Note: I followed this documentation to integrate WebAuthn, but some steps were missing in their guide.*
-```
 
 This addition ensures users know where to find the official documentation while acknowledging that some steps might be missing. Let me know if you need further adjustments! 😊
 
