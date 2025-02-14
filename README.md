@@ -7,7 +7,21 @@ This project integrates WebAuthn (passkeys authentication) into a Laravel 11 pro
 - WebAuthn authentication with Passkeys.
 - Integration with Laravel's authentication system.
 - Using Webpass for JavaScript WebAuthn handling.
+## Demo: Login with Authenticated Device
 
+Below is an example of the login screen where users can sign in using their passkey:
+
+![Login with Passkey](login.png)
+
+- Users can select a device with a saved passkey to authenticate.
+- Options include devices like  **iPhone, iPad, or Android device**, or a **Security key**.
+## Demo: Register New Device
+
+Below is an example of registering new device:
+
+![Login with Passkey](register_new.png)
+
+- Options include devices like  **iPhone, iPad, or Android device**, or a **Security key**.
 ## Requirements
 - **Laravel 11.x** or later.
 - **PHP 8.1** or later.
