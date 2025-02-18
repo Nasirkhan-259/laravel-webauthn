@@ -82,7 +82,8 @@
         console.log(user, success, error);
 
         if (success) {
-            window.location.replace("/home")
+            console.log()
+            //window.location.replace("/home")
         }
     }
 </script>

@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                        <input type="email" id="user-email" placeholder="User Email">
                         <button id="register-passkey-btn">Register Passkey</button>
                 </div>
             </div>
@@ -22,6 +23,15 @@
     </div>
 </div>
 <script>
+    const attestOptionsConfig = {
+        path: "/webauthn/register/options"
+    };
+    const attestConfig = {
+        path: "/webauthn/register",
+        body: {
+            email: document.getElementById("user-email").value,
+        }
+    };
     // Wait until the DOM is ready
     document.addEventListener('DOMContentLoaded', async () => {
         // Check if the browser supports WebAuthn
@@ -30,16 +40,12 @@
             return;
         }
 
-        // Add a click handler for passkey registration
         document.getElementById('register-passkey-btn').addEventListener('click', async () => {
-            // Call the attestation helper
-            const { success, error } = await Webpass.attest(
-                "/webauthn/register/options",  // Endpoint to fetch registration options
-                "/webauthn/register"             // Endpoint to process the attestation response
-            );
+            const { data, success, error } = await Webpass.attest(attestOptionsConfig, attestConfig);
 
             if (success) {
-                // On success, redirect or show a success message.
+                // On success, you might want to generate a token on the backend and return it.
+                // For now, we'll simply redirect:
                 window.location.replace("/home");
             } else {
                 console.error("Attestation error:", error);

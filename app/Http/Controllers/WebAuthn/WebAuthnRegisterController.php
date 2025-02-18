@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\WebAuthn;
 
+use http\Client\Curl\User;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Laragear\WebAuthn\Http\Requests\AttestationRequest;
@@ -36,8 +37,21 @@ class WebAuthnRegisterController
     public function register(AttestedRequest $request): Response
     {
         $request->save();
+        $email = $request->input('email');
+        if ($user = \App\Models\User::where('email', $email)->first()) {
+            $token = $user->createToken('loginToken')->plainTextToken;
+            return response(
+                [
+                    'success' => true,
+                    'username' => $user->email,
+                ]
+            );
+        }
 
-        return response()->noContent();
+        return response([
+            'message' => "Invalid email ",
+            'success' => false,
+        ]);
     }
     public function createChallenge(AttestationRequest $request)
     {

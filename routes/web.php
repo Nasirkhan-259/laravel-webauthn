@@ -11,10 +11,7 @@ Route::get('/', function () {
 \Illuminate\Support\Facades\Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/passkeys', [WebAuthnRegisterController::class, 'index'])->name('passkeys.index');
-    Route::prefix('webauthn')->group(function () {
-        Route::post('/register/options', [WebAuthnRegisterController::class, 'options']);
-        Route::post('/register', [WebAuthnRegisterController::class, 'register']);
-    });
+
 });
 Route::prefix('webauthn')->group(function () {
     Route::post('/login/options', [WebAuthnLoginController::class, 'options']);
