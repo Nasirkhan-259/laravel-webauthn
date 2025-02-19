@@ -30,7 +30,19 @@ class WebAuthnLoginController
      */
     public function login(AssertedRequest $request): Response
     {
-        return response()->noContent($request->login() ? 204 : 422);
+        $login = $request->login();
+
+        if ($login) {
+            $user = $request->user();
+            $token = $user->createToken('loginToken')->plainTextToken;
+            return response([
+                'token' => $token,
+                'username' => $user->username,
+            ]);
+        }
+
+        return ApiResponse::error('Login failed', 422);
+        //return response()->noContent($request->login() ? 204 : 422);
     }
     public function createChallenge(AssertedRequest $request)
     {
