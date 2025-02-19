@@ -18,3 +18,6 @@ Route::prefix('webauthn')->group(function () {
     Route::post('/register/options', [WebAuthnRegisterController::class, 'options']);
     Route::post('/register', [WebAuthnRegisterController::class, 'register']);
 })->middleware('auth:sanctum');
+Route::get('/session-debug', function () {
+    return response()->json(session()->all());
+});
