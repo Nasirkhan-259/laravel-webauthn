@@ -4,16 +4,17 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laragear\WebAuthn\WebAuthnAuthentication;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laragear\WebAuthn\Contracts\WebAuthnAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements WebAuthnAuthenticatable
+class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory,HasApiTokens, Notifiable , WebAuthnAuthentication;
+    use HasFactory,HasApiTokens, Notifiable ;
 
     /**
      * The attributes that are mass assignable.
@@ -47,5 +48,9 @@ class User extends Authenticatable implements WebAuthnAuthenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function passkeys(): HasMany
+    {
+        return $this->hasMany(Passkey::class);
     }
 }

@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'webauthn/*',
             'api/*',
+            'passkey/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

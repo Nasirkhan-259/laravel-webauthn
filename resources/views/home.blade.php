@@ -17,6 +17,7 @@
                     {{ __('You are logged in!') }}
                         <input type="email" id="user-email" placeholder="User Email">
                         <button id="register-passkey-btn">Register Passkey</button>
+                        <a href="{{route('backpack.passkey.list')}}"  >Add New Pass Key</a>
                 </div>
             </div>
         </div>
